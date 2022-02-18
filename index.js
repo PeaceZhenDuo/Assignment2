@@ -46,7 +46,7 @@ app.get('/', (req, res) => res.render('pages/index'))
 var rInformation = null;
 app.get('/return',async function(req,res){
   rInformation = null;
-  var pool = await client.query("select * from rectangles;"); 
+  var pool = await client.query("SELECT * FROM rectangles;"); 
   var listq = {results:pool};
   res.render('pages/rectangles', listq);
 })
@@ -64,7 +64,7 @@ app.get('/rectangles',async function(req,res){
   }
   
 
-  var pool = await client.query("select * from rectangles;");   
+  var pool = await client.query("SELECT * FROM rectangles;");   
   var listq={results:pool};
 
   res.render('pages/rectangles',listq);
@@ -72,10 +72,10 @@ app.get('/rectangles',async function(req,res){
 
 
 app.post('/rectangles',async function(req,res){      
-  console.log( req.body);
+
   var pool = await client.query("INSERT INTO rectangles(name , width , height ,color ) VALUES('"+req.body.iname+"','"+req.body.iwidth+"','"+req.body.iheight+"','"+req.body.icolor+"'); ");
 
-  var pool = await client.query("select * from rectangles;");
+  var pool = await client.query("SELECT * FROM rectangles;");
   var listq={results:pool};
   res.render('pages/rectangles',listq);
 })
